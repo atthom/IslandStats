@@ -41,7 +41,9 @@ json_data = json.loads(jsonfile.read())
 jsonfile.close()
 xmlfile = open("qae.xml", "w")
 
-xmlfile.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<alldata>\n    ")
+xmlfile.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
+xmlfile.write(open("dtd.xml").read())
+xmlfile.write("\n<alldata>\n    ")
 for data in json_data:
     builder = parserbuilder(data, "data", TreeBuilder())
     doc = builder.close()
