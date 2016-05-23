@@ -15,9 +15,11 @@ def parserbuilder(data, tag_name, builder, indent="\n     "):
         builder.data(unicode(data))
         builder.end(tag_name)
     elif t in (ListType, TupleType):
-        indent = indent + "    ";
+        #indent = indent + "    ";        
         for value in data:
-            parserbuilder(value, tag_name, builder, indent)
+        	if(str(tag_name)!="stacktrace" and str(tag_name)!="exception" and str(tag_name)!="message"):
+        		parserbuilder(value, tag_name, builder, indent)
+            
         builder.data(indent)
     elif t == DictionaryType:
         builder.data(indent)
@@ -35,11 +37,12 @@ def parserbuilder(data, tag_name, builder, indent="\n     "):
 
 
 filename = sys.argv[1]
+filexml = sys.argv[2]
 i=0;
 jsonfile = open(filename);
 json_data = json.loads(jsonfile.read())
 jsonfile.close()
-xmlfile = open("qae.xml", "w")
+xmlfile = open(filexml, "w")
 
 xmlfile.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
 xmlfile.write(open("dtd.xml").read())
