@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from lxml import etree
 import sys
 from xml.dom import minidom
@@ -86,12 +87,12 @@ def createnode(tag, value):
 	return nn
 
 def mymean(mylist):
-	summ = 0;
+	summ = 0.0;
 	if len(mylist)==0:
 		return 0
 	for value in mylist:
-		summ = summ + int(value)
-	return summ/len(mylist)
+		summ = summ + float(value)
+	return summ/float(len(mylist))
 
 def createaction(action, moyenne, longeur):
 	act = newdoc.createElement(action)
