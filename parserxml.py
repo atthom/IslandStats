@@ -32,30 +32,13 @@ for data in root.findall("data"):
 	action = data.find("data").find("action")
 	cost = data.find("data").find("cost")
 	if(action != None):
-		if (action.text == "fly"):
-			currentAction = 0
-		if (action.text == "heading"):
-			currentAction = 1
-		if (action.text == "echo"):
-			currentAction = 2
-		if (action.text == "scan"):
-			currentAction = 3
-		if (action.text == "stop"):
-			currentAction = 4
-		if (action.text == "land"):
-			currentAction = 5
-		if (action.text == "move_to"):
-			currentAction = 6
-		if (action.text == "scout"):
-			currentAction = 7
-		if (action.text == "glimpse"):
-			currentAction = 8
-		if (action.text == "explore"):
-			currentAction = 9
-		if (action.text == "exploit"):
-			currentAction = 10
-		if (action.text == "transform"):
-			currentAction = 11
+		i=0
+		for arg in listarg:
+			if action.text == arg:
+				currentAction = i
+				break
+			i=i+1
+		
 	if(cost!=None):
 		if(currentAction == 0):
 			fly.append(cost.text)
@@ -82,18 +65,18 @@ for data in root.findall("data"):
 		if(currentAction == 11):
 			transform.append(cost.text)
 
-print("number of fly : %d" % len(fly))
-print("number of heading : %d" % len(heading))
-print("number of echo : %d" % len(echo))
-print("number of scan : %d" % len(scan))
-print("number of stop : %d" % len(stop))
-print("number of land : %d" % len(land))
-print("number of move_to : %d" % len(move_to))
-print("number of scout : %d" % len(scout))
-print("number of glimpse : %d" % len(glimpse))
-print("number of explore : %d" % len(explore))
-print("number of exploit : %d" % len(exploit))
-print("number of transform : %d" % len(transform))
+#print("number of fly : %d" % len(fly))
+#print("number of heading : %d" % len(heading))
+#print("number of echo : %d" % len(echo))
+#print("number of scan : %d" % len(scan))
+#print("number of stop : %d" % len(stop))
+#print("number of land : %d" % len(land))
+#print("number of move_to : %d" % len(move_to))
+#print("number of scout : %d" % len(scout))
+#print("number of glimpse : %d" % len(glimpse))
+#print("number of explore : %d" % len(explore))
+#print("number of exploit : %d" % len(exploit))
+#print("number of transform : %d" % len(transform))
 
 
 def createnode(tag, value):
@@ -154,7 +137,12 @@ def writedata(newdoc):
 	file.close()
 
 week = sys.argv[2]
-team = filename.split(".")[0]
+
+team = sys.argv[1]
+team = team.split(".")[1].split("/")
+team = team[len(team)-1]
+#print team
+
 
 alldata = makealldata(week, team)
 writedata(alldata)
