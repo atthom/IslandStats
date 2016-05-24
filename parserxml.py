@@ -1,44 +1,90 @@
 from lxml import etree
 
-stat_number_action = [0,0,0,0,0,0,0,0,0,0,0,0]
-nb_action = 0;
+fly = []
+heading = []
+echo = []
+scan = []
+stop = []
+land = []
+move_to = []
+scout = []
+glimpse = []
+explore = []
+exploit = []
+transform = []
+
 tree = etree.parse("qae.xml")
-for data in tree.xpath("/alldata/data/data/action"):
-	nb_action+=1;
-	if (data.text == "fly"):
-		stat_number_action[0] = stat_number_action[0] + 1
-	if (data.text == "heading"):
-		stat_number_action[1] = stat_number_action[1] + 1
-	if (data.text == "echo"):
-		stat_number_action[2] = stat_number_action[2] + 1
-	if (data.text == "scan"):
-		stat_number_action[3] = stat_number_action[3] + 1
-	if (data.text == "stop"):
-		stat_number_action[4] = stat_number_action[4] + 1
-	if (data.text == "land"):
-		stat_number_action[5] = stat_number_action[5] + 1
-	if (data.text == "move_to"):
-		stat_number_action[6] = stat_number_action[6] + 1
-	if (data.text == "scout"):
-		stat_number_action[7] = stat_number_action[7] + 1
-	if (data.text == "glimpse"):
-		stat_number_action[8] = stat_number_action[8] + 1
-	if (data.text == "explore"):
-		stat_number_action[9] = stat_number_action[9] + 1
-	if (data.text == "exploit"):
-		stat_number_action[10] = stat_number_action[10] + 1
-	if (data.text == "transform"):
-		stat_number_action[11] = stat_number_action[11] + 1
-print("number of fly : %d" % stat_number_action[0])
-print("number of heading : %d" % stat_number_action[1])
-print("number of echo : %d" % stat_number_action[2])
-print("number of scan : %d" % stat_number_action[3])
-print("number of stop : %d" % stat_number_action[4])
-print("number of land : %d" % stat_number_action[5])
-print("number of move_to : %d" % stat_number_action[6])
-print("number of scout : %d" % stat_number_action[7])
-print("number of glimpse : %d" % stat_number_action[8])
-print("number of explore : %d" % stat_number_action[9])
-print("number of exploit : %d" % stat_number_action[10])
-print("number of transform : %d" % stat_number_action[11])
-print("number of action : %d" % nb_action)
+root = tree.getroot()
+currentAction = -1
+for data in root.findall("data"):
+	action = data.find("data").find("action")
+	cost = data.find("data").find("cost")
+	if(action != None):
+		if (action.text == "fly"):
+			currentAction = 0
+		if (action.text == "heading"):
+			currentAction = 1
+		if (action.text == "echo"):
+			currentAction = 2
+		if (action.text == "scan"):
+			currentAction = 3
+		if (action.text == "stop"):
+			currentAction = 4
+		if (action.text == "land"):
+			currentAction = 5
+		if (action.text == "move_to"):
+			currentAction = 6
+		if (action.text == "scout"):
+			currentAction = 7
+		if (action.text == "glimpse"):
+			currentAction = 8
+		if (action.text == "explore"):
+			currentAction = 9
+		if (action.text == "exploit"):
+			currentAction = 10
+		if (action.text == "transform"):
+			currentAction = 11
+
+	if(cost!=None):
+		if(currentAction == 0):
+			fly.append(cost.text)
+		if(currentAction == 1):
+			heading.append(cost.text)
+		if(currentAction == 2):
+			echo.append(cost.text)
+		if(currentAction == 3):
+			scan.append(cost.text)
+		if(currentAction == 4):
+			stop.append(cost.text)
+		if(currentAction == 5):
+			land.append(cost.text)
+		if(currentAction == 0):
+			move_to.append(cost.text)
+		if(currentAction == 7):
+			scout.append(cost.text)
+		if(currentAction == 8):
+			glimpse.append(cost.text)
+		if(currentAction == 9):
+			explore.append(cost.text)
+		if(currentAction == 10):
+			exploit.append(cost.text)
+		if(currentAction == 11):
+			transform.append(cost.text)
+
+
+
+
+
+print("number of fly : %d" % len(fly))
+print("number of heading : %d" % len(heading))
+print("number of echo : %d" % len(echo))
+print("number of scan : %d" % len(scan))
+print("number of stop : %d" % len(stop))
+print("number of land : %d" % len(land))
+print("number of move_to : %d" % len(move_to))
+print("number of scout : %d" % len(scout))
+print("number of glimpse : %d" % len(glimpse))
+print("number of explore : %d" % len(explore))
+print("number of exploit : %d" % len(exploit))
+print("number of transform : %d" % len(transform))
+
