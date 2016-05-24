@@ -1,4 +1,6 @@
 from lxml import etree
+import sys
+from xml.dom import minidom
 
 fly = []
 heading = []
@@ -13,7 +15,13 @@ explore = []
 exploit = []
 transform = []
 
-tree = etree.parse("qae.xml")
+
+if len(sys.argv) <2:
+	print("Use : python parserxml.py [fichier.xml] [week]")
+
+filename = sys.argv[1]
+
+tree = etree.parse(filename)
 root = tree.getroot()
 currentAction = -1
 for data in root.findall("data"):
@@ -44,7 +52,6 @@ for data in root.findall("data"):
 			currentAction = 10
 		if (action.text == "transform"):
 			currentAction = 11
-
 	if(cost!=None):
 		if(currentAction == 0):
 			fly.append(cost.text)
@@ -71,10 +78,6 @@ for data in root.findall("data"):
 		if(currentAction == 11):
 			transform.append(cost.text)
 
-
-
-
-
 print("number of fly : %d" % len(fly))
 print("number of heading : %d" % len(heading))
 print("number of echo : %d" % len(echo))
@@ -88,3 +91,61 @@ print("number of explore : %d" % len(explore))
 print("number of exploit : %d" % len(exploit))
 print("number of transform : %d" % len(transform))
 
+
+
+week = sys.argv[2]
+team = filename.split(".")[0]
+
+
+newdoc = minidom.Document()
+newroot = newdoc.createElement('data')
+
+teamxml = newdoc.createElement('team')
+teamValue = newdoc.createTextNode(team)
+teamxml.appendChild(teamValue)
+
+
+weekxml = newdoc.createElement('week')
+weekValue =  newdoc.createTextNode(week)
+weekxml.appendChild(weekValue)
+
+
+
+
+newroot.appendChild(teamxml)
+newroot.appendChild(weekxml)
+
+newdoc.appendChild(newroot)
+
+
+
+#newroot.appendChild(weekxml)
+
+#newroot = newdoc.createElement('alldata')
+
+#newdoc.appendChild(newroot)
+
+
+ff = open("data.xml", "r").read()
+doc = ff.split("</alldata>")[0]
+
+file = open("data.xml", "w");
+file.write(doc)
+newdata = newdoc.toprettyxml().replace("<?xml version=\"1.0\" ?>", "")
+file.write(newdata)
+file.write("</alldata>")
+file.close()
+
+#file.write(newdoc.toprettyxml())
+
+ #newdoc = minidom.Document()
+  #newroot = newdoc.createElement('root')
+ # rootattr = newdoc.createAttribute('name')
+ # rootattr.nodeValue = 'foo'
+#  newdoc.appendChild(newroot)
+
+def mymean(mylist):
+	summ = 0;
+	for value in mylist:
+		summ = summ + value
+	return summ/len(mylist)
