@@ -17,7 +17,6 @@ transform = []
 
 listarg = ["fly", "heading", "echo", "scan", "stop", "land", "move_to", "scout", "glimpse", "explore", "exploit", "transform"]
 
-#listarg = ["fly", "heading", "echo", "scan", "stop", "land", "move_to", "scout", "glimpse", "explore", "exploit", "transform"]
 newdoc = minidom.Document()
 
 if len(sys.argv) <2:
@@ -146,21 +145,4 @@ team = team[len(team)-1]
 
 alldata = makealldata(week, team)
 writedata(alldata)
-
-#newroot.appendChild(weekxml)
-
-#newroot = newdoc.createElement('alldata')
-
-#newdoc.appendChild(newroot)
-
-
-
-
-#file.write(newdoc.toprettyxml())
-
- #newdoc = minidom.Document()
-  #newroot = newdoc.createElement('root')
- # rootattr = newdoc.createAttribute('name')
- # rootattr.nodeValue = 'foo'
-#  newdoc.appendChild(newroot)
 
