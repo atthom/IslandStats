@@ -1,42 +1,47 @@
-<style type="text/css"> 
-alldata , data, meth, part {} 
-budget, status,costcontracts { 
-    display: block; 
-    width: 250px;
-    font-size: 16pt ; 
-    font-family: arial ; 
-    font-weight: bold; 
-    background-color: teal; 
-    color: white; 
-    padding-left: 10px;
-}
-amount, resource, action { 
-    display: block; 
-    font-size: 12pt; 
-    padding-left: 10px;
+meth,part,time{
+    color: white
 }
 
-contracts  {
-    display: block; 
-    font-size: 12pt; 
-    color: red ; 
-    font-weight: bold; 
-    padding-left: 10px;
+contracts{
+    border: solid;
 }
 
-parameters, men, heading {
-    display: block; 
-    font-size: 11pt ; 
-    font-style: italic;
-    font-family: arial ; 
-    padding-left: 10px;
+amount{
+    color: red;
 }
 
-contracts {
-    border: 2px solid;
+resource {
+    color: blue;    
 }
 
-data {
-    border: 2px solid;
+men{
+    border: solid;
+    color: green;
 }
-</style>
+
+heading{
+    border: solid;
+    color: gray;
+}
+
+budget{
+    border: solid;
+    color: yellow;
+}
+
+data{
+    border: 1px solid;
+    display: block;
+}
+
+parameters{
+    color: blue
+}
+
+status{
+    color: orange;
+}
+
+cost{
+    color: purple;
+}
