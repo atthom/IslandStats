@@ -15,4 +15,89 @@
 	<team>exe</team>
 	<week>week1</week>
 </data>
+
+<list>
+	<team>exe</team>
+	<week>week1</week>
+</list>
+
+<list>
+	<team>exe</team>
+	<week>week1</week>
+</list>
+
+<data>
+	<fly>
+		<moyenne>3</moyenne>
+		<longeur>7</longeur>
+	</fly>
+	<team>exe</team>
+	<week>week1</week>
+</data>
+
+<data>
+	<list>
+		<fly>
+			<moyenne>3</moyenne>
+			<longeur>7</longeur>
+		</fly>
+	</list>
+	<team>exe</team>
+	<week>week1</week>
+</data>
+
+<data>
+	<list>
+		<fly>
+			<moyenne>3</moyenne>
+			<longeur>7</longeur>
+		</fly>
+		<heading>
+			<moyenne>0</moyenne>
+			<longeur>0</longeur>
+		</heading>
+		<echo>
+			<moyenne>6</moyenne>
+			<longeur>3</longeur>
+		</echo>
+		<scan>
+			<moyenne>0</moyenne>
+			<longeur>0</longeur>
+		</scan>
+		<stop>
+			<moyenne>0</moyenne>
+			<longeur>0</longeur>
+		</stop>
+		<land>
+			<moyenne>0</moyenne>
+			<longeur>0</longeur>
+		</land>
+		<move_to>
+			<moyenne>3</moyenne>
+			<longeur>7</longeur>
+		</move_to>
+		<scout>
+			<moyenne>0</moyenne>
+			<longeur>0</longeur>
+		</scout>
+		<glimpse>
+			<moyenne>0</moyenne>
+			<longeur>0</longeur>
+		</glimpse>
+		<explore>
+			<moyenne>0</moyenne>
+			<longeur>0</longeur>
+		</explore>
+		<exploit>
+			<moyenne>0</moyenne>
+			<longeur>0</longeur>
+		</exploit>
+		<transform>
+			<moyenne>0</moyenne>
+			<longeur>0</longeur>
+		</transform>
+	</list>
+	<team>exe</team>
+	<week>week1</week>
+</data>
 </alldata>

@@ -15,6 +15,7 @@ explore = []
 exploit = []
 transform = []
 
+listarg = ["fly", "heading", "echo", "scan", "stop", "land", "move_to", "scout", "glimpse", "explore", "exploit", "transform"]
 
 if len(sys.argv) <2:
 	print("Use : python parserxml.py [fichier.xml] [week]")
@@ -92,6 +93,38 @@ print("number of exploit : %d" % len(exploit))
 print("number of transform : %d" % len(transform))
 
 
+def createnode(tag, value):
+	newdoc = minidom.Document()
+	nn = newdoc.createElement(tag)
+	value =  newdoc.createTextNode(value)
+	nn.appendChild(value)
+	return nn
+
+def mymean(mylist):
+	summ = 0;
+	if len(mylist)==0:
+		return 0
+	for value in mylist:
+		summ = summ + int(value)
+	return summ/len(mylist)
+
+def createaction(action, moyenne, longeur):
+	act = newdoc.createElement(action)
+	moy = createnode('moyenne', moyenne)
+	lon = createnode('longeur', longeur)
+	act.appendChild(moy)
+	act.appendChild(lon)
+	return act
+
+def makeallactions(*lists):
+	listarg = ["fly", "heading", "echo", "scan", "stop", "land", "move_to", "scout", "glimpse", "explore", "exploit", "transform"]
+	act = newdoc.createElement("list")
+	i=0
+	for mylist in lists:
+		action = createaction(listarg[i], str(mymean(mylist)),  str(len(mylist)))
+		act.appendChild(action)
+		i=i+1
+	return act
 
 week = sys.argv[2]
 team = filename.split(".")[0]
@@ -100,17 +133,17 @@ team = filename.split(".")[0]
 newdoc = minidom.Document()
 newroot = newdoc.createElement('data')
 
-teamxml = newdoc.createElement('team')
-teamValue = newdoc.createTextNode(team)
-teamxml.appendChild(teamValue)
+teamxml = createnode('team', team)
+weekxml = createnode('week', week)
+
+#flyxml = createaction('fly', str(mymean(fly)), str(len(fly)))
+
+#newroot = ["fly", "heading", "echo", "scan", "stop", "land", "move_to", "scout", "glimpse", "explore", "exploit", "transform"]
+allactions = makeallactions(fly, heading, echo, scan, stop, land, move_to, scout, glimpse, explore, exploit, transform)
 
 
-weekxml = newdoc.createElement('week')
-weekValue =  newdoc.createTextNode(week)
-weekxml.appendChild(weekValue)
 
-
-
+newroot.appendChild(allactions)
 
 newroot.appendChild(teamxml)
 newroot.appendChild(weekxml)
@@ -144,8 +177,3 @@ file.close()
  # rootattr.nodeValue = 'foo'
 #  newdoc.appendChild(newroot)
 
-def mymean(mylist):
-	summ = 0;
-	for value in mylist:
-		summ = summ + value
-	return summ/len(mylist)
