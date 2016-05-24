@@ -4,13 +4,14 @@ import json
 from types import *
 from xml.etree.ElementTree import TreeBuilder, tostring
 
-def parserbuilder(data, tag_name, builder, indent="\n     "):
+def parserbuilder(data, tag_name, builder, indent="\n     ", withindent=True):
     t = type(data)
     if t == NoneType:
         builder.start(tag_name, {})
         builder.end(tag_name)
     elif t in (StringType, UnicodeType, IntType, FloatType, BooleanType, LongType):
-        builder.data(indent)
+    	if withindent:
+    		builder.data(indent)        
         builder.start(tag_name, {})
         builder.data(unicode(data))
         builder.end(tag_name)
@@ -18,16 +19,18 @@ def parserbuilder(data, tag_name, builder, indent="\n     "):
         #indent = indent + "    ";        
         for value in data:
         	if(str(tag_name)!="stacktrace" and str(tag_name)!="exception" and str(tag_name)!="message"):
-        		parserbuilder(value, tag_name, builder, indent)
-            
-        builder.data(indent)
+        		parserbuilder(value, tag_name, builder, indent)            
+        if withindent:
+    		builder.data(indent)
     elif t == DictionaryType:
-        builder.data(indent)
+        if withindent:
+    		builder.data(indent)
         builder.start(tag_name, {})
         indent = indent + "    ";
         for key, value in data.items():
             parserbuilder(value, key, builder, indent)
-        indent = indent[0:len(indent)-4]
+        if withindent:
+    		indent = indent[0:len(indent)-4]        
         builder.data(indent)
         builder.end(tag_name)
     return builder
@@ -35,6 +38,8 @@ def parserbuilder(data, tag_name, builder, indent="\n     "):
     
 #filename = "./championships/week02/qae.json"
 
+if len(sys.argv) <3:
+	print("Use : python json2xml.py [fichier.json] [fichier.xml]")
 
 filename = sys.argv[1]
 filexml = sys.argv[2]
@@ -45,6 +50,7 @@ jsonfile.close()
 xmlfile = open(filexml, "w")
 
 xmlfile.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
+xmlfile.write("<?xml-stylesheet href=\"style.css\" type=\"text/css\"?>\n")
 xmlfile.write(open("dtd.xml").read())
 xmlfile.write("\n<alldata>\n    ")
 for data in json_data:

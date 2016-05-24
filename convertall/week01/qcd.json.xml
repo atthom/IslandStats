@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE alldata [
+        <!ELEMENT alldata (data)*>
+        <!ELEMENT data (meth|part|data|contracts|men|heading|budget|time|action|parameters|status|cost|extras)*>
+        <!ELEMENT meth (#PCDATA)>
+        <!ELEMENT part (#PCDATA)>
+        <!ELEMENT contracts (amount|resource)*>
+        <!ELEMENT amount (#PCDATA)>
+        <!ELEMENT resource (#PCDATA)>
+        <!ELEMENT men (#PCDATA)>
+        <!ELEMENT heading (#PCDATA)>
+        <!ELEMENT budget (#PCDATA)>
+        <!ELEMENT time (#PCDATA)>
+        <!ELEMENT action (#PCDATA)>
+        <!ELEMENT parameters (direction)*>
+        <!ELEMENT direction (#PCDATA)>
+        <!ELEMENT status (#PCDATA)>
+        <!ELEMENT cost (#PCDATA)>
+        <!ELEMENT extras (found|range)*>
+        <!ELEMENT found (#PCDATA)>
+        <!ELEMENT range (#PCDATA)>
+        ]>
+<alldata>
+         <data>
+         <meth>initialize</meth>
+         <part>Engine</part>
+         <data>
+             <contracts>
+                 <amount>1000</amount>
+                 <resource>PLANK</resource>
+             </contracts>
+             <contracts>
+                 <amount>800</amount>
+                 <resource>QUARTZ</resource>
+             </contracts>
+             <contracts>
+                 <amount>3000</amount>
+                 <resource>WOOD</resource>
+             </contracts>
+             <contracts>
+                 <amount>80</amount>
+                 <resource>FLOWER</resource>
+             </contracts>
+             
+             <men>4</men>
+             <heading>E</heading>
+             <budget>15000</budget>
+         </data>
+         <time>1452455590753</time>
+     </data>
+     <data>
+         <meth>takeDecision</meth>
+         <part>Explorer</part>
+         <data>
+             <action>stop</action>
+         </data>
+         <time>1452455590755</time>
+     </data>
+     <data>
+         <meth>takeDecision</meth>
+         <part>Engine</part>
+         <data>
+             <status>OK</status>
+             <cost>6</cost>
+             <extras>
+             </extras>
+         </data>
+         <time>1452455590755</time>
+     </data>
+</alldata>
