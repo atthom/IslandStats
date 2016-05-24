@@ -17,6 +17,9 @@ transform = []
 
 listarg = ["fly", "heading", "echo", "scan", "stop", "land", "move_to", "scout", "glimpse", "explore", "exploit", "transform"]
 
+#listarg = ["fly", "heading", "echo", "scan", "stop", "land", "move_to", "scout", "glimpse", "explore", "exploit", "transform"]
+newdoc = minidom.Document()
+
 if len(sys.argv) <2:
 	print("Use : python parserxml.py [fichier.xml] [week]")
 
@@ -116,8 +119,9 @@ def createaction(action, moyenne, longeur):
 	act.appendChild(lon)
 	return act
 
+
+
 def makeallactions(*lists):
-	listarg = ["fly", "heading", "echo", "scan", "stop", "land", "move_to", "scout", "glimpse", "explore", "exploit", "transform"]
 	act = newdoc.createElement("list")
 	i=0
 	for mylist in lists:
@@ -126,31 +130,34 @@ def makeallactions(*lists):
 		i=i+1
 	return act
 
+def makealldata(week, team):	
+	newroot = newdoc.createElement('data')
+
+	newroot.appendChild(createnode('team', team))
+	newroot.appendChild(createnode('week', week))
+
+	allactions = makeallactions(fly, heading, echo, scan, stop, land, move_to, scout, glimpse, explore, exploit, transform)
+	newroot.appendChild(allactions)
+	newdoc.appendChild(newroot)
+	return newdoc
+
+
+def writedata(newdoc):
+	ff = open("data.xml", "r").read()
+	doc = ff.split("</alldata>")[0]
+
+	file = open("data.xml", "w");
+	file.write(doc)
+	newdata = newdoc.toprettyxml().replace("<?xml version=\"1.0\" ?>", "")
+	file.write(newdata)
+	file.write("</alldata>")
+	file.close()
+
 week = sys.argv[2]
 team = filename.split(".")[0]
 
-
-newdoc = minidom.Document()
-newroot = newdoc.createElement('data')
-
-teamxml = createnode('team', team)
-weekxml = createnode('week', week)
-
-#flyxml = createaction('fly', str(mymean(fly)), str(len(fly)))
-
-#newroot = ["fly", "heading", "echo", "scan", "stop", "land", "move_to", "scout", "glimpse", "explore", "exploit", "transform"]
-allactions = makeallactions(fly, heading, echo, scan, stop, land, move_to, scout, glimpse, explore, exploit, transform)
-
-
-
-newroot.appendChild(allactions)
-
-newroot.appendChild(teamxml)
-newroot.appendChild(weekxml)
-
-newdoc.appendChild(newroot)
-
-
+alldata = makealldata(week, team)
+writedata(alldata)
 
 #newroot.appendChild(weekxml)
 
@@ -159,15 +166,7 @@ newdoc.appendChild(newroot)
 #newdoc.appendChild(newroot)
 
 
-ff = open("data.xml", "r").read()
-doc = ff.split("</alldata>")[0]
 
-file = open("data.xml", "w");
-file.write(doc)
-newdata = newdoc.toprettyxml().replace("<?xml version=\"1.0\" ?>", "")
-file.write(newdata)
-file.write("</alldata>")
-file.close()
 
 #file.write(newdoc.toprettyxml())
 
