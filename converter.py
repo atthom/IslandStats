@@ -3,12 +3,11 @@ import os,subprocess
 path = "./championships"
 pathxml = "./convertall"
 dirs = os.listdir(path)
+
 for file in dirs:
   # if os.path.isdir(file):
   	newfolder = pathxml+ "/" + file;
   	print("dossier : " + file)
-  	if(file=="stats.sh"):
-  		break
   	if not os.path.exists(newfolder):
   		os.mkdir(newfolder)
 
