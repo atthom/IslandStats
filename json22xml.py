@@ -51,6 +51,7 @@ xmlfile = open(filexml, "w")
 
 xmlfile.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
 xmlfile.write("<?xml-stylesheet href=\"style.css\" type=\"text/css\"?>\n")
+xmlfile.write("<?xml-stylesheet href=\"../../style.css\" type=\"text/css\"?>\n")
 xmlfile.write(open("dtd.xml").read())
 xmlfile.write("\n<alldata>\n    ")
 for data in json_data:

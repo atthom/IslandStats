@@ -2,10 +2,6 @@ meth,part,time{
     color: white
 }
 
-contracts{
-    border: solid;
-}
-
 amount{
     color: red;
 }
@@ -15,27 +11,38 @@ resource {
 }
 
 men{
-    border: solid;
     color: green;
 }
 
 heading{
-    border: solid;
     color: gray;
 }
 
 budget{
-    border: solid;
-    color: yellow;
+    color: lime;
 }
+
 
 data{
     border: 1px solid;
     display: block;
+    width: 250px;
+    height: 60px;
+    float: left;
+    text-align: center;
+
+}
+
+data data {
+    border: 0px solid;
 }
 
 parameters{
     color: blue
+}
+
+status, cost, action, parameter, direction {
+    display: inline;
 }
 
 status{
