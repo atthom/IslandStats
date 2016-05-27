@@ -1,5 +1,5 @@
 meth,part,time{
-    color: white
+    display: none;
 }
 
 amount{
@@ -22,15 +22,20 @@ budget{
     color: lime;
 }
 
+alldata {
+    width: 90%;
+    margin-left: 200px;
+}
 
 data{
+
     border: 1px solid;
     display: block;
     width: 250px;
-    height: 60px;
+    height: 40px;
     float: left;
     text-align: center;
-
+    padding-top: 5px;
 }
 
 data data {
@@ -51,4 +56,22 @@ status{
 
 cost{
     color: purple;
+}
+
+data:first-child{
+    background-color: grey;
+    display: block;
+    margin-left: 37%;
+    float: none;
+    width: 250px;
+    box-shadow: 10px 10px 5px #888888;
+    height: 250px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+data:first-child > * > *{
+    margin: 10px;
+    color: black;
+    font-size: 20px;
+    display: block;
 }
