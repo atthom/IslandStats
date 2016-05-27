@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="style.css" type="text/css"?>
+<?xml-stylesheet href="../../style.css" type="text/css"?>
 <!DOCTYPE alldata [
         <!ELEMENT alldata (data)*>
         <!ELEMENT data (meth|part|data|contracts|men|heading|budget|time|action|parameters|status|cost|extras)*>
