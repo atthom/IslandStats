@@ -9,7 +9,7 @@ Fichiers importants :
 		converter.py : converti tout le dossier championship vers convertall en xml
 		parserxml.py : parse un fichier xml et en extrait des données qu'il ajoute à alldata.xml		
 		parserall.py : parse tout les fichiers contenu dans convertall 
-		finalstats.py : Affiche des statistiques globales au projet QGL
+		globalstats.py : Affiche des statistiques globales au projet QGL
 
 	Fichiers xml :
 		alldata.xml : toutes les données facilement utilisable de QGL
